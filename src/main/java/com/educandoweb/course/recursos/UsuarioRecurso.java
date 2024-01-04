@@ -14,7 +14,7 @@ import com.educandoweb.course.servicos.ServicoUsuario;
 
 @RestController
 @RequestMapping(value = "/usuarios")
-public class UsuarioRecursos {
+public class UsuarioRecurso {
 	
 	@Autowired
 	private ServicoUsuario servico;
