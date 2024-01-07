@@ -14,13 +14,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_produto")
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,15 +29,18 @@ public class Produto implements Serializable{
 	private String descricao;
 	private Double preco;
 	private String imgUrl;
-	
+
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "tb_produto_categoria", 
-	joinColumns = @JoinColumn(name = "produto_id"), 
-	inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
 	
-	public Produto(){}
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemPedido> items = new HashSet<>();
+	
+	public Produto() {
+	}
+
 	public Produto(Long id, String nome, String descricao, Double preco, String imgUrl) {
 		super();
 		this.id = id;
@@ -45,45 +49,64 @@ public class Produto implements Serializable{
 		this.preco = preco;
 		this.imgUrl = imgUrl;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public Double getPreco() {
 		return preco;
 	}
+
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+
 	public String getImgUrl() {
 		return imgUrl;
 	}
+
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
+
 	public Set<Categoria> getCategorias() {
 		return categorias;
 	}
-	
+	@JsonIgnore
+	public Set<Pedido> getPedidos(){
+		Set<Pedido> set = new HashSet<>();
+		for(ItemPedido x : items) {
+			set.add(x.getPedido());
+		}
+		return set;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -95,6 +118,5 @@ public class Produto implements Serializable{
 		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }
