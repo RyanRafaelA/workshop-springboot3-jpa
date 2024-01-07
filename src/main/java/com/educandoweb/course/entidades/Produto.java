@@ -38,9 +38,7 @@ public class Produto implements Serializable {
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> items = new HashSet<>();
 	
-	public Produto() {
-	}
-
+	public Produto() {}
 	public Produto(Long id, String nome, String descricao, Double preco, String imgUrl) {
 		super();
 		this.id = id;
@@ -53,43 +51,33 @@ public class Produto implements Serializable {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	public String getDescricao() {
 		return descricao;
 	}
-
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
 	public Double getPreco() {
 		return preco;
 	}
-
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-
 	public String getImgUrl() {
 		return imgUrl;
 	}
-
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-
 	public Set<Categoria> getCategorias() {
 		return categorias;
 	}
@@ -106,7 +94,6 @@ public class Produto implements Serializable {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
