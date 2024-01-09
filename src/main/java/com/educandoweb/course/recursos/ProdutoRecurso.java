@@ -21,13 +21,13 @@ public class ProdutoRecurso {
 	
 	@GetMapping
 	public ResponseEntity<List<Produto>> encontraTudo(){
-		List<Produto> lista = servico.findAll();
+		List<Produto> lista = servico.encontrarTudo();
 		return ResponseEntity.ok().body(lista);
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Produto> findById(@PathVariable Long id){
-		Produto obj = servico.findById(id);
+		Produto obj = servico.encontrarPorId(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	

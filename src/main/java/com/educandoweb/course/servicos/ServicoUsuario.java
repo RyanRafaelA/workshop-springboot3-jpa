@@ -15,12 +15,16 @@ public class ServicoUsuario {
 	@Autowired
 	private RepositorioUsuario repositorio;
 	
-	public List<Usuario> findAll(){
+	public List<Usuario> encontrarTudo(){
 		return repositorio.findAll();
 	}
 	
-	public Usuario findById(Long id) {
+	public Usuario encontrarPorId(Long id) {
 		Optional<Usuario> obj = repositorio.findById(id);
 		return obj.get();
+	}
+	
+	public Usuario insercao(Usuario obj) {
+		return repositorio.save(obj);
 	}
 }

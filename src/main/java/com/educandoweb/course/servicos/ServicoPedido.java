@@ -15,11 +15,11 @@ public class ServicoPedido {
 	@Autowired
 	private RepositorioPedido repositorio;
 	
-	public List<Pedido> findAll(){
+	public List<Pedido> encontrarTudo(){
 		return repositorio.findAll();
 	}
 	
-	public Pedido findById(Long id) {
+	public Pedido encontrarPorId(Long id) {
 		Optional<Pedido> obj = repositorio.findById(id);
 		return obj.get();
 	}

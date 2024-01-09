@@ -15,11 +15,11 @@ public class ServicoProduto {
 	@Autowired
 	private RepositorioProduto repositorio;
 	
-	public List<Produto> findAll(){
+	public List<Produto> encontrarTudo(){
 		return repositorio.findAll();
 	}
 	
-	public Produto findById(Long id) {
+	public Produto encontrarPorId(Long id) {
 		Optional<Produto> obj = repositorio.findById(id);
 		return obj.get();
 	}
