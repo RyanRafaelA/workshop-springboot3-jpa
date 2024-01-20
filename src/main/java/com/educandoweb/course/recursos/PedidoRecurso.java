@@ -26,7 +26,7 @@ public class PedidoRecurso {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Pedido> findById(@PathVariable Long id){
+	public ResponseEntity<Pedido> encontrarPorId(@PathVariable Long id){
 		Pedido obj = servico.encontrarPorId(id);
 		return ResponseEntity.ok().body(obj);
 	}
